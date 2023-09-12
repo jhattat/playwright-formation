@@ -4,12 +4,12 @@ const dataPrep = JSON.parse(JSON.stringify(require('../test-data/prep/LM-CUSTOME
 
 test.describe('Login Test Suite', () => {
     let testData = dataProd;
-    
-    if (process.env.ENV == 'prep') {
+
+    if (process.env.ENV == 'prep' && process.env.BU == 'lmfr') {
         testData = dataPrep;
     }
     
-    test.beforeEach(async ({ loginPage }) => {
+    test.beforeEach(async ({ dataSetup }) => {
         //await loginPage.GotoLoginPage(process.env.WEB_URL);
     });
 
