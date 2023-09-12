@@ -9,7 +9,7 @@ test.describe('Login Test Suite', () => {
         testData = dataPrep;
     }
     
-    test.beforeEach(async ({ dataSetup }) => {
+    test.beforeEach(async ({ loginPage }) => {
         //await loginPage.GotoLoginPage(process.env.WEB_URL);
     });
 
