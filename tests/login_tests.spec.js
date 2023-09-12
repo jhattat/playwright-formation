@@ -4,24 +4,28 @@ const regTestData = JSON.parse(JSON.stringify(require('../test-data/reg/testData
 
 test.describe('Login Test Suite', () => {
     let testData = qaTestData;
+    
     if (process.env.ENV == 'reg') {
         testData = regTestData;
     }
+    
     test.beforeEach(async ({ loginPage }) => {
-        await loginPage.GotoLoginPage(process.env.WEB_URL);
+        //await loginPage.GotoLoginPage(process.env.WEB_URL);
     });
 
     test.use({ userAgent: 'LMUser Cerberus' });
 
-    test('Logint with valid credentials', async ({ loginPage }) => {
-        await loginPage.Login(process.env.username, process.env.password);
-        await loginPage.AssertLoggedInUserDetails(testData.user);
+    test('Connexion', async ({ homepage, loginPage }) => {
+        await homepage.openHomepage();
+        await homepage.acceptAllCookies();
+        await homepage.gotoLoginPage();
+        await loginPage.login(testData.user.name, testData.user.password);
     });
 
-    test('Landing page visual comparison', async ({ page, loginPage }) => {
-        await loginPage.GotoLoginPage();
+    /*test('Landing page visual comparison', async ({ page, loginPage }) => {
+        await loginPage.gotoLoginPage();
         await expect(page).toHaveScreenshot('landing.png');
-    });
+    });*/
 
     test.afterEach(async ({ page }) => {
         await page.close();

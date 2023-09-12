@@ -1,6 +1,7 @@
 {
     "user": {
         "name": "Jack Gomez",
+        "password": "",
         "role": "Customer"
     },
     "financialDetails": {
