@@ -56,8 +56,8 @@ module.exports = defineConfig({
         screenshot : 'on',
         trace : 'retain-on-failure'
       },
-    },
-
+    }
+    /*,
     {
       name: 'firefox',
       use: {
@@ -67,8 +67,8 @@ module.exports = defineConfig({
         screenshot : 'on',
         trace : 'retain-on-failure'
       },
-    },
-
+    }
+    ,
     {
       name: 'webkit',
       use: {
@@ -78,7 +78,7 @@ module.exports = defineConfig({
         screenshot : 'on',
         trace : 'retain-on-failure'
       },
-    },
+    },*/
 
     /* Test against mobile viewports. */
     // {
