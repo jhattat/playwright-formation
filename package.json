@@ -1,0 +1,17 @@
+{
+  "name": "learnplaywright_1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@faker-js/faker": "^7.6.0",
+    "@playwright/test": "^1.37.1"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1"
+  }
+}
