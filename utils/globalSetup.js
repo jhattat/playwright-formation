@@ -11,7 +11,7 @@ async function globalSetup(config) {
     });
   } else {
     dotenv.config({
-      path: `.env.prod`,
+      path: `.env.lmfr-prod`,
       override: true
     });
   }

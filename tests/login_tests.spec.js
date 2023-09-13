@@ -1,13 +1,16 @@
 const { test,expect } = require('../utils/fixtures.js');
-const dataProd = JSON.parse(JSON.stringify(require('../test-data/prod/LM-CUSTOMER.json')));
-const dataPrep = JSON.parse(JSON.stringify(require('../test-data/prep/LM-CUSTOMER.json')));
+const dataProd = JSON.parse(JSON.stringify(require('../test-data/lmfr-prod/LM-CUSTOMER.json')));
+const dataPrep = JSON.parse(JSON.stringify(require('../test-data/lmfr-prep/LM-CUSTOMER.json')));
 
 test.describe('Login Test Suite', () => {
-    let testData = dataProd;
 
-    if (process.env.ENV == 'prep' && process.env.BU == 'lmfr') {
+    let testData = recupBonneDatalib("LM-CUSTOMER");
+
+    
+    /*if (process.env.ENV == 'prep' && process.env.BU == 'lmfr') {
         testData = dataPrep;
-    }
+
+    }*/
     
     test.beforeEach(async ({ loginPage }) => {
         //await loginPage.GotoLoginPage(process.env.WEB_URL);
@@ -32,3 +35,14 @@ test.describe('Login Test Suite', () => {
     });
     
 });
+
+function recupBonneDatalib(nomdeladatalib) {
+    var bu = process.env.BU;
+    var env = process.env.ENV;
+
+    var path = "../test-data/" + bu + "-" + env + "/" + nomdeladatalib + ".json";
+
+    var contenuDuJson = JSON.parse(JSON.stringify(require(path)));
+
+    return contenuDuJson;
+}
