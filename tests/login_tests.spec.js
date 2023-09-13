@@ -1,48 +1,33 @@
-const { test,expect } = require('../utils/fixtures.js');
-const dataProd = JSON.parse(JSON.stringify(require('../test-data/lmfr-prod/LM-CUSTOMER.json')));
-const dataPrep = JSON.parse(JSON.stringify(require('../test-data/lmfr-prep/LM-CUSTOMER.json')));
+import { recupBonneDatalib } from "../utils/DatasetManager";
+const { test } = require('../utils/fixtures.js');
 
-test.describe('Login Test Suite', () => {
+test.describe('Login Test Suite', async () => {
+    // DATALIB
+    let testData = await recupBonneDatalib("LM-CUSTOMER");
 
-    let testData = recupBonneDatalib("LM-CUSTOMER");
-
-    
-    /*if (process.env.ENV == 'prep' && process.env.BU == 'lmfr') {
-        testData = dataPrep;
-
-    }*/
-    
-    test.beforeEach(async ({ loginPage }) => {
-        //await loginPage.GotoLoginPage(process.env.WEB_URL);
-    });
-
+    // USER-AGENT
     test.use({ userAgent: 'LMUser Cerberus' });
 
-    test('Connexion', async ({ homepage, loginPage }) => {
+    test('Connexion', async ({ homepage, loginPage, page }) => {
         await homepage.openHomepage();
         await homepage.acceptAllCookies();
         await homepage.gotoLoginPage();
         await loginPage.login(testData.user.email, testData.user.password);
-    });
+        
+        var date = new Date();
+        var year = date.getFullYear();
+        var month =  date.getMonth() < 9 ? "0" + (date.getMonth() + 1) : date.getMonth() +1;
+        var day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+        var hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+        var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+        var secondes = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+        var dateString = year+month+day+"-"+hours+minutes+secondes;
 
-    /*test('Landing page visual comparison', async ({ page, loginPage }) => {
-        await loginPage.gotoLoginPage();
-        await expect(page).toHaveScreenshot('landing.png');
-    });*/
+        await page.screenshot({ path: 'test-results/screenshots/'+ dateString +'-'+ process.env.BU + '-' + process.env.ENV +'.png' });
+    });
 
     test.afterEach(async ({ page }) => {
         await page.close();
     });
     
 });
-
-function recupBonneDatalib(nomdeladatalib) {
-    var bu = process.env.BU;
-    var env = process.env.ENV;
-
-    var path = "../test-data/" + bu + "-" + env + "/" + nomdeladatalib + ".json";
-
-    var contenuDuJson = JSON.parse(JSON.stringify(require(path)));
-
-    return contenuDuJson;
-}
