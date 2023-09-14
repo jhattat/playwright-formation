@@ -7,6 +7,7 @@ exports.Homepage = class Homepage {
         // Application objects
         this.btnAcceptCookies = page.locator("//*[@class=' js-modal-privacy-button-accept mc-button js-modal-first-cta']");
         this.btnHeaderAccount = page.locator("//*[@data-cerberus='CPT_accountheader']");
+        this.btnAcceptCookiesLMIT = page.locator("//*[@id='onetrust-accept-btn-handler']");
 
         this.fieldEmail = page.locator("//*[@name='email']");
     }
@@ -16,9 +17,13 @@ exports.Homepage = class Homepage {
     }
 
     async acceptAllCookies() {
-        await this.btnAcceptCookies.click();
+        if (process.env.BU == "lmit") {
+            await this.btnAcceptCookiesLMIT.click();
+        } else {
+            await this.btnAcceptCookies.click();
+        }
     }
-
+    
     async gotoLoginPage() {
         await this.btnHeaderAccount.click();
         await expect.soft(this.fieldEmail).toBeVisible;

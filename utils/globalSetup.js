@@ -6,12 +6,12 @@ async function globalSetup(config) {
 
   if(process.env.context) {
     dotenv.config({
-      path: `.env.${process.env.context}`,
+      path: `envs/.env.${process.env.context}`,
       override: true
     });
   } else {
     dotenv.config({
-      path: `.env.lmfr-prod`,
+      path: `envs/.env.lmfr-prod`,
       override: true
     });
   }
