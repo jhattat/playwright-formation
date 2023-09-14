@@ -9,10 +9,15 @@ test.describe('Login Test Suite', async () => {
     test.use({ userAgent: 'LMUser Cerberus' });
 
     test('Connexion', async ({ homepage, loginPage, page }) => {
-        await homepage.openHomepage();
+        /*await homepage.openHomepage();
         await homepage.acceptAllCookies();
         await homepage.gotoLoginPage();
         await loginPage.login(testData.user.email, testData.user.password);
+        */
+        await test.step('Open homepage', async () => {await homepage.openHomepage()})
+        await test.step('Accept all cookies', async () => {await homepage.acceptAllCookies()});
+        await test.step('Go to login page', async () => {await homepage.gotoLoginPage()});
+        await test.step(`Log in with ${testData.user.email}`, async () => {await loginPage.login(testData.user.email, testData.user.password)});
         
         var date = new Date();
         var year = date.getFullYear();

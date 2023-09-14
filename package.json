@@ -9,7 +9,9 @@
   "license": "ISC",
   "devDependencies": {
     "@faker-js/faker": "^7.6.0",
-    "@playwright/test": "^1.37.1"
+    "@playwright/test": "^1.37.1",
+    "allure-commandline": "^2.24.0",
+    "allure-playwright": "^2.8.1"
   },
   "dependencies": {
     "dotenv": "^16.3.1"

@@ -18,6 +18,7 @@ exports.Homepage = class Homepage {
 
     async acceptAllCookies() {
         if (process.env.BU == "lmit") {
+            await this.btnAcceptCookiesLMIT.waitFor();
             await this.btnAcceptCookiesLMIT.click();
         } else {
             await this.btnAcceptCookies.click();
@@ -26,6 +27,7 @@ exports.Homepage = class Homepage {
     
     async gotoLoginPage() {
         await this.btnHeaderAccount.click();
+        await this.page.waitForTimeout(6000);
         await expect.soft(this.fieldEmail).toBeVisible;
     }
 
