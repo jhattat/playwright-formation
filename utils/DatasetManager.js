@@ -1,14 +1,8 @@
-async function recupBonneDatalib(nomdeladatalib) {
-    var bu = process.env.BU;
-    var env = process.env.ENV;
-
-    var path = "../test-data/" + bu + "-" + env + "/" + nomdeladatalib + ".json";
-
-    var contenuDuJson = JSON.parse(JSON.stringify(require(path)));
-
-    return contenuDuJson;
+async function getDatalib(path, name) {
+    let filepath = "../test-data/" + process.env.BU + "-" + process.env.ENV + "/" + path + "/" + name + ".json";
+    return JSON.parse(JSON.stringify(require(filepath)));
 }
 
 module.exports = {
-    recupBonneDatalib
+    getDatalib
 };

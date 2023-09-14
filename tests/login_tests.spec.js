@@ -1,9 +1,9 @@
-import { recupBonneDatalib } from "../utils/DatasetManager";
+import { getDatalib } from "../utils/DatasetManager";
 const { test } = require('../utils/fixtures.js');
 
 test.describe('Login Test Suite', async () => {
     // DATALIB
-    let testData = await recupBonneDatalib("LM-CUSTOMER");
+    let testData = await getDatalib("customers","LM-CUSTOMER");
 
     // USER-AGENT
     test.use({ userAgent: 'LMUser Cerberus' });
