@@ -19,21 +19,22 @@ test.describe('test api', () => {
         "X-ClientApiKey": `iC8ElSdF23lpQTbvp5vo6QZS94ZNHPQA`,
       }
     });
-      const body = await newIssue.json();
-      console.log(await newIssue.json());
-      expect(newIssue.status()).toBe(200);
-      expect(body.resourceId).toEqual('82389957');
-      resourceId=body.resourceId;
-      path=body.path;
-    });
-  
-    test(`Access to product page`, async ({ page }) => {
-      await page.goto(`https://leroymerlin-frlm-uat1.nprd-02-a9ef.priv.manawa.adeo.cloud/${path}`);
-      await page.waitForTimeout(3000);
-    });
 
-    test.afterEach(async ({ page }) => {
-      await page.close();
+    const body = await newIssue.json();
+    console.log(await newIssue.json());
+    expect(newIssue.status()).toBe(200);
+    expect(body.resourceId).toEqual('82389957');
+    resourceId=body.resourceId;
+    path=body.path;
+  });
+  
+  test(`Access to product page`, async ({ page }) => {
+    await page.goto(`https://leroymerlin-frlm-uat1.nprd-02-a9ef.priv.manawa.adeo.cloud/${path}`);
+    await page.waitForTimeout(3000);
+  });
+
+  test.afterEach(async ({ page }) => {
+    await page.close();
   });
 
 });

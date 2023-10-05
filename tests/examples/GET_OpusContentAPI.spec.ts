@@ -4,7 +4,7 @@ import { test, expect } from '@playwright/test'
 
 test.describe('test api', () => {
 
-  test.only('Call opus content', async ({ request }) => {
+  test('Call opus content', async ({ request }) => {
     const newIssue = await request.get(`https://ccdp-uat1.priv.nprd.api.devportal.adeo.cloud/api-opus-product-and-decision-query/v1/api/product_details/82389957?compose=commercial-operations,enrichment,meshing,gtins`, {
         headers: {
           "X-BU-Code": `LMFR`,
