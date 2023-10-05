@@ -1,5 +1,5 @@
-import { getDatalib } from "../utils/DatasetManager";
-const { test } = require('../utils/fixtures.js');
+import { getDatalib } from "../../../utils/DatasetManager";
+const { test } = require('../../../utils/fixtures.js');
 
 test.describe('Login Test Suite', async () => {
     // DATALIB
