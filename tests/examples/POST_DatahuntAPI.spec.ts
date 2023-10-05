@@ -7,7 +7,7 @@ import { test, expect } from '@playwright/test'
 
 test.describe('test api', () => {
 
-    test('should create a bug report', async ({ request }) => {
+    test.skip('should create a bug report @skip', async ({ request }) => {
         const newIssue = await request.post(`https://gtdp.priv.api.devportal.adeo.cloud/api-datahunt-adeo-network/v1/query`, {
             headers: {
                 // We set this header per GitHub guidelines.

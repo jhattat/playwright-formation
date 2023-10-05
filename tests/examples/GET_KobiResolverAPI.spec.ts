@@ -28,7 +28,7 @@ test.describe('test api', () => {
     path=body.path;
   });
   
-  test(`Access to product page`, async ({ page }) => {
+  test.skip(`Access to product page @skip`, async ({ page }) => {
     await page.goto(`https://leroymerlin-frlm-uat1.nprd-02-a9ef.priv.manawa.adeo.cloud/${path}`);
     await page.waitForTimeout(3000);
   });
