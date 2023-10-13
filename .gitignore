@@ -1,0 +1,7 @@
+# ignore files from allure report
+allure-report/
+allure-results/
+
+.DS_Store
+
+reports/
