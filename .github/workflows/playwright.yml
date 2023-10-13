@@ -21,10 +21,12 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
-      run: npx playwright test
+      run: PLAYWRIGHT_JUNIT_OUTPUT_NAME=results.xml npx playwright test --reporter=junit
     - uses: actions/upload-artifact@v3
       if: always()
       with:
         name: playwright-report
         path: playwright-report/
         retention-days: 30
+    - name: Submit results to Xray
+      run: 'curl -H "Authorization: Bearer MzYwMjg5MzY1MTQ4Ort0mi/FNJmASXcR1hE5LltpzovE" -X POST -F "file=@results.xml" "https://jira.adeo.com/rest/raven/1.0/import/execution/junit?projectKey=CQE&testPlanKey=CQE-2136"'
